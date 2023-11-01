@@ -11,37 +11,8 @@ function Products() {
   const { data, loading } = useFetch(`${API_BASE_ADDRESS}/products`);
 
   useEffect(() => {
-
-    let exampleData = [
-    {
-      title:"title",
-      price:"price",
-      description:"description",
-      image:"image",
-      rating:"rating",
-    },
-    {
-      title:"title",
-      price:"price",
-      description:"description",
-      image:"image",
-      rating:"rating",
-    },
-    {
-      title:"title",
-      price:"price",
-      description:"description",
-      image:"image",
-      rating:"rating",
-    },
-    ]
-
-    if(!!data){
-      setProducts(data);
-    }else{
-      setProducts(exampleData);
-    }
-  }, []);
+    setProducts(data);
+  }, [loading]);
 
   useEffect(() => {
     let productsFiltered = [...products];
@@ -63,7 +34,7 @@ function Products() {
         <Filter category={category} setCategory={setCategory} />
       </div>
       <ul>
-        {allProducts.map((item) => {   
+        {allProducts.map((item) => {
           return (
             <li key={item.id}>
               <Card {...item} />
