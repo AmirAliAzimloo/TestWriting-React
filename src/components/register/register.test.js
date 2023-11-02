@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import Register from "./index";
 import { act } from "react-dom/test-utils";
 import { utils } from "../helper";
+import { ERROR_MESSAGE } from "../../constants";
 
 const getElement = (element) => {
   const elements = {
@@ -75,6 +76,7 @@ describe("Register Page", () => {
     expect(isEmpti).toHaveBeenCalledTimes(3)
   })
 
+  // enable & disable Submit btn
   test("button should be enabled when all inputs are filled",()=>{
     changeElement("Email","stackjs@gmail.com");
     changeElement("Password","123456");
@@ -83,5 +85,59 @@ describe("Register Page", () => {
     expect(getElement("Button")).toBeEnabled();
     // bala ba paiin mosavii hastan
     expect(getElement("Button")).not.toBeDisabled()
+  })
+
+
+  // tests for error handelnig
+  describe("handle errors and navigate",()=>{
+    beforeEach(()=>{
+      // aval ke safhe render shod nabayad error ha vojood dashte bashan
+      expect(screen.queryByText(ERROR_MESSAGE.EMAIL)).not.toBeInTheDocument();
+      expect(screen.queryByText(ERROR_MESSAGE.PASSWORD)).not.toBeInTheDocument();
+      expect(screen.queryByText(ERROR_MESSAGE.CONFIRM_PASSWORD)).not.toBeInTheDocument();
+    })
+
+    // Email
+    test("should show email error message on invalid email",()=>{
+      changeElement("Email","amiraliazimloo123")
+      changeElement("Password","1234567")
+      changeElement("Confirm Password","1234567")
+
+      act(()=>{
+        userEvent.click(getElement("Button"))
+      })
+
+      expect(screen.getByText(ERROR_MESSAGE.EMAIL)).toBeInTheDocument()
+
+    })
+
+    // Password
+    test("should show Password error message on invalid Password",()=>{
+      changeElement("Email","amiraliazimloo123@gmail.com")
+      changeElement("Password","12")
+      changeElement("Confirm Password","12")
+
+      act(()=>{
+        userEvent.click(getElement("Button"))
+      })
+
+      expect(screen.getByText(ERROR_MESSAGE.PASSWORD)).toBeInTheDocument()
+
+    })
+
+    // Confirm Password
+    test("should show Confirm Password error message on invalid Confirm Password",()=>{
+      changeElement("Email","amiraliazimloo123@gmail.com")
+      changeElement("Password","1234567")
+      changeElement("Confirm Password","12")
+
+      act(()=>{
+        userEvent.click(getElement("Button"))
+      })
+
+      expect(screen.getByText(ERROR_MESSAGE.CONFIRM_PASSWORD)).toBeInTheDocument()
+
+    })
+
   })
 });
