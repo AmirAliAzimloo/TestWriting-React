@@ -74,4 +74,14 @@ describe("Register Page", () => {
     utils.isEmpty(getElement("Confirm Password").value)
     expect(isEmpti).toHaveBeenCalledTimes(3)
   })
+
+  test("button should be enabled when all inputs are filled",()=>{
+    changeElement("Email","stackjs@gmail.com");
+    changeElement("Password","123456");
+    changeElement("Confirm Password","123456");
+
+    expect(getElement("Button")).toBeEnabled();
+    // bala ba paiin mosavii hastan
+    expect(getElement("Button")).not.toBeDisabled()
+  })
 });
