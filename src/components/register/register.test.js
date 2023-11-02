@@ -2,6 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import Register from "./index";
 
+const getElement=(element)=>{
+  const elements={
+    "Email":screen.getByRole("textbox", { name: "Email"}),
+    "Password": screen.getByLabelText("Password"),
+    "Confirm Password": screen.getByLabelText("Confirm Password"),
+  }
+  if( elements[element])  return elements[element]
+}
 describe("Register Page", () => {
   test("Inputs should be initially empty", () => {
 
@@ -22,14 +30,13 @@ describe("Register Page", () => {
     <Register/>
     </BrowserRouter>
     )
-    const emailElement = screen.getByRole("textbox",{name:"Email"})
-    const passwordElement = screen.getByLabelText("Password")
-    const confirmPasswordElement = screen.getByLabelText("Confirm Password")
+
     // Act
     // Change event - click event or ...
     // Assert
-    expect(emailElement.value).toBe("")
-    expect(passwordElement.value).toBe("")
-    expect(confirmPasswordElement.value).toBe("") 
+
+    expect(getElement("Email").value).toBe("");
+    expect(getElement("Password").value).toBe("");
+    expect(getElement("Confirm Password").value).toBe("");
   });
 });
