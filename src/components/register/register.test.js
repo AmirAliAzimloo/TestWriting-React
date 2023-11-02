@@ -161,5 +161,10 @@ describe("Register Page", () => {
 
 
     });
+
+    // snapshot testing
+    test("snappshot",()=>{
+      // some codes
+    })
   });
 });
