@@ -163,7 +163,7 @@ describe("Register Page", () => {
     });
 
     // snapshot testing
-    test("snappshot",()=>{
+    test("snappshot",()=>{ 
       const view = render(<Register/>)
       expect(view).toMatchSnapshot()
       // age taghiiri ke dadim ro bahash movafegh boodim too cmd
@@ -171,7 +171,7 @@ describe("Register Page", () => {
       // bad i ro mizanim ta liste taghiir haro bbinim
       // bad u ro mizanim ta snappshotemoon update beshe
       // maziiyatesh iine ke mitoonim taghiiratemoon ro hamishe rasad konim
-      
+
     })
   });
 });
