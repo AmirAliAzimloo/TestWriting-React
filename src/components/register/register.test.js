@@ -30,6 +30,6 @@ describe("Register Page", () => {
     // Assert
     expect(emailElement.value).toBe("")
     expect(passwordElement.value).toBe("")
-    expect(confirmPasswordElement.value).toBe("")
+    expect(confirmPasswordElement.value).toBe("") 
   });
 });
