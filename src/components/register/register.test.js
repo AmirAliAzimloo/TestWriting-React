@@ -1,17 +1,16 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen , act } from "@testing-library/react";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import Register from "./index";
-import { act } from "react-dom/test-utils";
 import { utils } from "../helper";
 import { ERROR_MESSAGE } from "../../constants";
 
 const getElement = (element) => {
   const elements = {
-    Email: screen.getByRole("textbox", { name: "Email" }),
-    Password: screen.getByLabelText("Password"),
+    "Email": screen.getByRole("textbox", { name: "Email" }),
+    "Password": screen.getByLabelText("Password"),
     "Confirm Password": screen.getByLabelText("Confirm Password"),
-    Button: screen.getByRole("button", { name: "Submit" }),
+    "Button": screen.getByRole("button", { name: "Submit" }),
   };
   if (elements[element]) return elements[element];
 };
