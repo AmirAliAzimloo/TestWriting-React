@@ -53,7 +53,7 @@ describe("Products Component",()=>{
         expect(options[0].selected).toBeFalsy();
         expect(options[1].selected).toBeFalsy();
         expect(options[2].selected).toBeTruthy();
-        expect(options[3].selected).toBeFalsy();
+        expect(options[3].selected).toBeFalsy(); 
         expect(options[4].selected).toBeFalsy();
     
         expect(screen.getAllByRole("listitem")).toEqual([list[1]])
